@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>Place Order</title>
+    <style>
+        body {
+            background-color: #FFCCCB;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        img {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin-top: 20px;
+            width: 50%;
+        }
+        textarea {
+            font-size: 1em;
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="s.html">
+        <h1>Place Order</h1>
+        <h3>FRESH APPLES (3)</h3>
+        <img src="5.png" width="308" height="308" alt="Fresh Apples">
+        <h2>100 RS.</h2>
+        <label for="address">ADDRESS:</label><br>
+        <textarea id="address" name="address" rows="3" cols="15"></textarea><br><br>
+        <label for="contact">CONTACT DETAILS:</label><br>
+        <textarea id="contact" name="contact" rows="3" cols="15"></textarea><br><br>
+        <input type="submit" value="PLACE ORDER">
+    </form>
+    <a href="a.html">Back</a>
+</body>
+</html>

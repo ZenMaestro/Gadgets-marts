@@ -1,0 +1,198 @@
+
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="Gadgets.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Gadgets Mart</title>
+    <meta name="description" content="Welcome to Gadgets Mart - Your one-stop shop for all the latest gadgets. Sign up today!">
+    <meta name="keywords" content="gadgets, electronics, technology, signup">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: "Comfortaa", cursive;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #000000;
+            margin-top: 100px;
+            opacity: 0.9;
+            animation: fadeIn 2s ease-out 0.5s forwards, slideDown 1s ease-out 0.5s forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 span {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to right, #2bff00, #2bfd01);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        img {
+            width: 400px;
+            height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgb(217, 0, 255);
+            margin: 30px auto;
+            transition: transform 0.3s, filter 0.3s, opacity 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+            filter: blur(5px);
+            opacity: 0.4;
+        }
+
+        p {
+            font-family: "Young Serif", serif;
+            font-size: 1.5em;
+            color: #000000;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 3s ease-out 1.5s forwards, slideUp 1s ease-out 1.5s forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        p span {
+            background: linear-gradient(to right, #00ffff, #0070c9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 3s infinite alternate ease-in-out;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #0070c9;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 2s forwards, slideUp 1s ease-out 2s forwards, pulse 2s infinite;
+        }
+
+        a:hover {
+            background-color: #005583;
+            transform: scale(1.1);
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.7);
+        }
+        ul {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.2;
+            list-style-position: inside;
+            text-align: center;
+        }
+
+        li {
+            display: inline-block;
+            margin-right: -4px;
+        }
+
+        @media screen and (max-width: 767px) {
+            body {
+                background-image: url('bg.mp4'); /* Mobile background image */
+                background-size: cover;
+                background-position: top;
+            }
+        }
+
+        /* Video Background for desktop */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Disable Video on Mobile */
+        @media (max-width: 768px) {
+            .background-video {
+                display: block;
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffb3, 0 0 30px #ffffff;
+            }
+            to {
+                text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop playsinline class="background-video">
+        <source src="bg.mp4" type="video/mp4">
+        <source src="bg.webm" type="video/webm">
+        Your Browser not suports Video Tag
+    </video>
+
+    <h1>WELCOME TO <span>GADGETS MART</span></h1>
+    <h1><span>THIS WEBSITE OWNED BY LIKHITH</span></h1>
+    <img src="Gadgets.png" alt="Gadgets Mart Logo">
+    <p>Click below to create an account</p>
+    <a href="page1.html">SIGN UP</a>
+    <section>
+        <h3>Features</h3>
+        <ul>
+            <li>Easy to use</li>
+            <li>Customizable</li>
+            <li>Responsive design</li>
+        </ul>
+    </section>
+    <section>
+        <h3>Benefits</h3>
+        <ul>
+            <li>Showcase your work</li>
+            <li>Increase visibility</li>
+            <li>Enhance your professional online presence</li>
+        </ul>
+    </section>
+    <script src="app.js"></script>
+</body>
+</html>

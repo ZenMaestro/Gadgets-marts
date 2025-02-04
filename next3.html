@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="Gadgets.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Mooli&display=swap");
+        body {
+            font-family: "Comfortaa", cursive;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+footer {
+    margin-top: auto;
+}
+article {
+      aspect-ratio: 3 / 4;
+      border-radius: calc(var(--radius) * 1px);
+      width: 350px;
+      position: relative;
+      grid-template-rows: 1fr auto;
+      box-shadow: 0 1rem 2rem -1rem black;
+      padding: 1rem;
+      display: grid;
+      gap: 1rem;
+      backdrop-filter: blur(calc(var(--cardblur, 5) * 1px));
+    }
+
+
+    main {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: calc(100vw - 2rem);
+      position: relative;
+    }
+
+    /* Glow specific styles */
+    [data-glow] {
+      --border-size: calc(var(--border, 2) * 1px);
+      --spotlight-size: calc(var(--size, 150) * 1px);
+      --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+      background-image: radial-gradient(var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+          hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)),
+          transparent);
+      background-color: var(--backdrop, transparent);
+      background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+      background-position: 50% 50%;
+      background-attachment: fixed;
+      border: var(--border-size) solid var(--backup-border);
+      position: relative;
+      touch-action: none;
+    }
+
+    [data-glow]::before,
+    [data-glow]::after {
+      pointer-events: none;
+      content: "";
+      position: absolute;
+      inset: calc(var(--border-size) * -1);
+      border: var(--border-size) solid transparent;
+      border-radius: calc(var(--radius) * 1px);
+      background-attachment: fixed;
+      background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+      mask-clip: padding-box, border-box;
+      mask-composite: intersect;
+    }
+
+    /* This is the emphasis light */
+    [data-glow]::before {
+      background-image: radial-gradient(calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+          hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)),
+          transparent 100%);
+      filter: brightness(2);
+    }
+    /* Search Bar Styles */
+.search-bar {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input[type="text"] {
+    padding: 0.3rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.3rem;
+    width: 40%;
+}
+
+.search-bar button[type="button"] {
+    padding: 0.3rem;
+    font-size: 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.search-bar button[type="button"]:hover {
+    background-color: #444;
+}
+.search-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #0069d9; /* Bootstrap primary hover color */
+}
+
+.search-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); /* Bootstrap primary focus shadow */
+}
+
+    /* This is the spotlight */
+    [data-glow]::after {
+      background-image: radial-gradient(calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+          hsl(0 100% 100% / var(--border-light-opacity, 1)),
+          transparent 100%);
+    }
+
+    [data-glow] [data-glow] {
+      position: absolute;
+      inset: 0;
+      will-change: filter;
+      opacity: var(--outer, 1);
+    }
+
+    [data-glow]>[data-glow] {
+      border-radius: calc(var(--radius) * 1px);
+      border-width: calc(var(--border-size) * 20);
+      filter: blur(calc(var(--border-size) * 10));
+      background: none;
+      pointer-events: none;
+    }
+
+
+    [data-glow]>[data-glow] ::before {
+      inset: -10px;
+      border-width: 10px;
+    }
+
+
+    [data-glow] [data-glow] {
+      border: none;
+    }
+
+
+    .inside-content {
+      padding: 10px;
+    }
+
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #232f3e;
+            background: transparent;
+            backdrop-filter: blur(50px);
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        ::placeholder {
+  color:rgb(0, 0, 0);
+  opacity: 1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+::-ms-input-placeholder { 
+  color: rgb(0, 0, 0);
+}
+.navigation li {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .navigation li a {
+            text-decoration: none;
+            padding: 6px 15px;
+            color: #112434;
+            border-radius: 20px;
+            font-size: clamp(0.9rem, 6vw, 1rem);
+        }
+
+        .navigation li a:hover,
+        .navigation li a.active {
+            background: #112434;
+            color: #fff;
+        }
+        .navbar a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            padding: 0 15px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar input[type="text"] {
+            width: 300px;
+            padding: 7px;
+            border: none;
+            border-radius: 5px;
+        }
+        .navbar .profile-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .profile-icon img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+       
+        .hero {
+    background-image: url("gr.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 80px 20px 40px;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+.hero h1, .hero h2 {
+    position: relative;
+    z-index: 2;
+}
+
+
+        .hero {
+            background-color: orange;
+            padding: 80px 20px 40px;
+            text-align: center;
+            background-image: url("gr.jpg"); 
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            margin: 10px 0 0;
+        }
+
+        /* Product Section */
+        .product {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product a:hover {
+    background-color: #e68a00;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+.product img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: contain;
+}
+
+
+        .product-section {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .product-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .products {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            background-color: white;
+            width: 200px;
+            margin: 15px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product p {
+            margin: 10px 0;
+        }
+
+        .product a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background-color: #ff9900;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+   button:hover{
+    background-color: #e68a00;
+
+        }
+        .product a:hover {
+            background-color: #e68a00;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #232f3e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .profile-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .profile-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Optional: Add a dropdown menu when the profile image is clicked */
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .profile-container:hover .profile-dropdown {
+            display: block;
+        }
+
+        .profile-dropdown a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .profile-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+    <title>Big Basket</title>
+</head>
+<body>
+
+    <div class="loader"></div>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div>
+            <a href="index.html.html" class="active">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="c.html">Contact Us</a>
+        </div>
+        <div>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search products...">
+<button onclick="searchProducts()">Search</button>
+
+<script>
+    function searchProducts() {
+        const query = document.getElementById('search').value.toLowerCase();
+        const products = document.querySelectorAll('.product');
+        
+        products.forEach(product => {
+            const productName = product.querySelector('h3').textContent.toLowerCase();
+            if (productName.includes(query)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+</script>
+        </div>        
+        </div>
+        <div>
+            <a href="sub.html">Subscribe</a>
+            <a href="account.html">Account</a>
+            <a href="a.html">b</a>
+        </div>
+    </div>
+
+    
+    <div class="hero">
+        <h1>Welcome to Gadgets Mart</h1>
+        <h2>Your One-Stop Shoping</h2>
+    </div>
+
+    <div class="product-section">
+        <h2>Our Featured Products</h2>
+        <div class="products">
+         
+            <!-- Product 5 -->           
+<div class="product">
+    <img src="iphone.jpg" alt="Smartphone">
+    <h3>Iphone</h3>
+    <p>Price: 1,00,000 Rs.</p>
+    <a href="https://www.apple.com/in/iphone-16/">Buy Now</a>
+</div>
+
+
+<!-- Product 6 -->
+<div class="product">
+    <img src="air.jpeg" alt="Wireless Earbuds">
+    <h3>Apple AirPods Pro(Gen 2)</h3>
+    <p>Price: 2,500 Rs.</p>
+    <a href="ar3.html">Buy Now</a>
+</div>
+
+<!-- Product 7 -->
+<div class="product">
+    <img src="fri.png" alt="Refrigerator">
+    <h3>Refrigerator</h3>
+    <p>Price: 25,000 Rs.</p>
+    <a href="fridge.html">Buy Now</a>
+</div>
+
+<!-- Product 8 -->
+<div class="product">
+    <img src="airc.jpg" alt="Air Conditioner">
+    <h3>Air Conditioner</h3>
+    <p>Price: 30,000 Rs.</p>
+    <a href="ac.html">Buy Now</a>
+</div>
+
+<!-- Product 9 -->
+<div class="product">
+    <img src="victus.png" alt="Laptop">
+    <h3>HP Victus</h3>
+    <p>Price: 50,000 Rs.</p>
+    <a href="laptop.html">Buy Now</a>
+</div>
+
+<!-- Product 10 -->
+<div class="product">
+    <img src="ipad.png" alt="Tablet">
+    <h3>Ipad</h3>
+    <p>Price: 12,000 Rs.</p>
+    <a href="tablet.html">Buy Now</a>
+</div>
+
+<!-- Product 11 -->
+<div class="product">
+    <img src="sam1.jpg" alt="Smartwatch">
+    <h3>Galaxy Watch pro 2</h3>
+    <p>Price: 4,000 Rs.</p>
+    <a href="smartwatch.html">Buy Now</a>
+</div>
+
+<!-- Product 12 -->
+<div class="product">
+    <img src="sam2.jpg" alt="Television">
+    <h3>Samsung Smart TV(43 inch)</h3>
+    <p>Price: 20,000 Rs.</p>
+    <a href="tv.html">Buy Now</a>
+</div>
+
+<!-- Product 13 -->
+<div class="product">
+    <img src="cam.jpg" alt="Digital Camera">
+    <h3>Sony Camera</h3>
+    <p>Price:1,35,000 Rs.</p>
+    <a href="camera.html">Buy Now</a>
+</div>
+
+<!-- Product 14 -->
+<div class="product">
+    <img src="mar.jpg" alt="Bluetooth Speaker">
+    <h3>Marshal Speaker</h3>
+    <p>Price: 30,000 Rs.</p>
+    <a href="speaker.html">Buy Now</a>
+</div>
+
+<!-- Product 15 -->
+<div class="product">
+    <img src="https://e7.pngegg.com/pngimages/773/938/png-clipart-xbox-one-x-video-game-consoles-black-video-game-console-accessories-playstation-4-xbox.png" alt="Gaming Console">
+    <h3>Gaming Console</h3>
+    <p>Price: 40,000 Rs.</p>
+    <a href="gaming.html">Buy Now</a>
+</div>
+
+<!-- Product 16 -->
+<div class="product">
+    <img src="https://e7.pngegg.com/pngimages/694/968/png-clipart-beats-electronics-headphones-apple-beats-studio%C2%B3-apple-beats-solo%C2%B3-red-headphones-sound-electronic-device.png" alt="Headphones">
+    <h3>Headphones</h3>
+    <p>Price: 1,500 Rs.</p>
+    <a href="headphones.html">Buy Now</a>
+</div>
+
+<!-- Product 17 -->
+<div class="product">
+    <img src="https://e7.pngegg.com/pngimages/480/558/png-clipart-iphone-7-rocket-vr-virtual-reality-headset-samsung-gear-vr-vr-headset-glasses-mobile-phones.png" alt="VR Headset">
+    <h3>VR Headset</h3>
+    <p>Price: 10,000 Rs.</p>
+    <a href="vr.html">Buy Now</a>
+</div>
+
+<!-- Product 18 -->
+<div class="product">
+    <img src="https://e7.pngegg.com/pngimages/124/60/png-clipart-black-and-yellow-drone-custom-drone-electronics-drones.png" alt="Drone">
+    <h3>Drone</h3>
+    <p>Price: 50,000 Rs.</p>
+    <a href="drone.html">Buy Now</a>
+</div>
+
+<!-- Product 19 -->
+<div class="product">
+    <img src="https://e7.pngegg.com/pngimages/59/300/png-clipart-microwave-microwave.png" alt="Microwave Oven">
+    <h3>Microwave Oven</h3>
+    <p>Price: 8,000 Rs.</p>
+    <a href="microwave.html">Buy Now</a>
+</div>
+
+<!-- Product 20 -->
+<div class="product">
+    <img src="https://e7.pngegg.com/pngimages/518/361/png-clipart-washing-machines-samsung-group-samsung-electronics-cleaning-washing-mashine-textile-clothes-dryer.png" alt="Washing Machine">
+    <h3>Washing Machine</h3>
+    <p>Price: 18,000 Rs.</p>
+    <a href="washingmachine.html">Buy Now</a>
+</div>
+
+<!-- Product 21 -->
+<div class="product">
+    <img src="https://e7.pngegg.com/pngimages/75/701/png-clipart-black-modem-router-wireless-router-wi-fi-modem-icons-miscellaneous-electronics.png" alt="WiFi Router">
+    <h3>WiFi Router</h3>
+    <p>Price: 2,000 Rs.</p>
+    <a href="router.html">Buy Now</a>
+</div>
+
+<!-- Product 22 -->
+<div class="product">
+    <img src="https://e7.pngegg.com/pngimages/479/557/png-clipart-lcd-projector-video-projector-high-definition-television-hd-projector-electronics-office.png" alt="Projector">
+    <h3>Projector</h3>
+    <p>Price: 25,000 Rs.</p>
+    <a href="projector.html">Buy Now</a>
+</div>
+
+<!-- Product 23 -->
+<div class="product">
+    <img src="keyboard1.jpg" alt="Mechanical Keyboard">
+    <h3>Mechanical Keyboard</h3>
+    <p>Price: 4,500 Rs.</p>
+    <a href="keyboard.html">Buy Now</a>
+</div>
+
+<!-- Product 24 -->
+<div class="product">
+    <img src="mouse1.jpg" alt="Wireless Mouse">
+    <h3>Wireless Mouse</h3>
+    <p>Price: 1,200 Rs.</p>
+    <a href="mouse.html">Buy Now</a>
+</div>
+
+<!-- Product 25 -->
+<div class="product">
+    <img src="monitor1.jpg" alt="Monitor">
+    <h3>Monitor</h3>
+    <p>Price: 10,000 Rs.</p>
+    <a href="monitor.html">Buy Now</a>
+</div>
+
+<!-- Product 26 -->
+<div class="product">
+    <img src="harddrive1.jpg" alt="External Hard Drive">
+    <h3>External Hard Drive</h3>
+    <p>Price: 6,000 Rs.</p>
+    <a href="harddrive.html">Buy Now</a>
+</div>
+
+<!-- Product 27 -->
+<div class="product">
+    <img src="ssd1.jpg" alt="SSD">
+    <h3>SSD (512 GB)</h3>
+    <p>Price: 7,500 Rs.</p>
+    <a href="ssd.html">Buy Now</a>
+</div>
+
+<!-- Product 28 -->
+<div class="product">
+    <img src="smartlight1.jpg" alt="Smart Light">
+    <h3>Smart Light</h3>
+    <p>Price: 1,000 Rs.</p>
+    <a href="smartlight.html">Buy Now</a>
+</div>
+
+<!-- Product 29 -->
+<div class="product">
+    <img src="airpurifier1.jpg" alt="Air Purifier">
+    <h3>Air Purifier</h3>
+    <p>Price: 12,000 Rs.</p>
+    <a href="airpurifier.html">Buy Now</a>
+</div>
+
+<!-- Product 30 -->
+<div class="product">
+    <img src="fitnessband1.jpg" alt="Fitness Band">
+    <h3>Fitness Band</h3>
+    <p>Price: 2,500 Rs.</p>
+    <a href="fitnessband.html">Buy Now</a>
+</div>
+ <!-- Product 1 -->
+ <div class="product">
+    <img src="3.jpg" alt="Biscuits">
+    <h3>Biscuits</h3>
+    <p>Price: 20 Rs.</p>
+    <a href="o.html">Buy Now</a>
+</div>
+
+<!-- Product 2 -->
+<div class="product">
+    <img src="3.png" alt="Chips">
+    <h3>Chips</h3>
+    <p>Price: 10 Rs.</p>
+    <a href="c.html">Buy Now</a>
+</div>
+
+<!-- Product 3 -->
+<div class="product">
+    <img src="4.jpg" alt="Bingo">
+    <h3>Bingo</h3>
+    <p>Price: 50 Rs.</p>
+    <a href="b.html">Buy Now</a>
+</div>
+
+<!-- Product 4 -->
+<div class="product">
+    <img src="6.jpg" alt="Apple">
+    <h3>Apple</h3>
+    <p>Price: 100 Rs.</p>
+    <a href="a.html">Buy Now</a>
+</div>
+        </div>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Product Name</h2>
+            <p>Product details and description here...</p>
+            <button>Buy Now</button>
+        </div>
+    </div>
+    
+    <script>
+        const modal = document.getElementById("productModal");
+        const closeModal = document.getElementsByClassName("close")[0];
+    
+        function openModal() {
+            modal.style.display = "block";
+        }
+    
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+    
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    
+    <div id="loader"></div>
+
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector("body").style.visibility = "hidden";
+                document.querySelector("#loader").style.visibility = "visible";
+            } else {
+                document.querySelector("#loader").style.display = "none";
+                document.querySelector("body").style.visibility = "visible";
+            }
+        };
+    </script>
+    
+    <div class="spinner"></div>
+<a href="cart.html">Cart <span id="cart-count">(0)</span></a>
+
+<script>
+    let cartCount = 0;
+
+    function addToCart() {
+        cartCount++;
+        document.getElementById("cart-count").textContent = `(${cartCount})`;
+    }
+</script>
+    
+    <!-- Footer -->
+    <footer>
+        <p>Copyright &copy; 2023-2025 Supermarket Grocery Supplies Pvt Ltd</p>
+    </footer>
+
+</body>
+</html>

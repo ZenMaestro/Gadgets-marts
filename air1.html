@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
+    <style>
+        body {
+            background-color: #FFCCCB;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-y: scroll; /* Ensure vertical scrollbar is visible */
+        }
+        h1, h2, h3 {
+            color: #333;
+            transition: color 0.3s ease;
+            margin: 10px 0;
+        }
+        img {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.05); /* Zoom effect on hover */
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin-top: 20px;
+            width: 50%;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards; /* Fade-in animation */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        textarea, select, input[type="text"] {
+            font-size: 1em;
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        textarea:focus, select:focus, input[type="text"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        input[type="radio"] {
+            margin: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #45a049;
+        }
+        .product-description {
+            font-size: 1.1em;
+            color: #555;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        .payment-option {
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .payment-title {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .payment-details {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Media Query for responsiveness */
+        @media (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+            img {
+                width: 80%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form action="s.html">
+        <h1>Place Order</h1>
+        <h3>AirPods Pro 2</h3>
+        <img src="air.jpeg" width="308" height="308" alt="AirPods Pro Gen 2">
+        <h2>Price: 25,000 RS.</h2>
+        
+        <label for="address">ADDRESS:</label><br>
+        <textarea id="address" name="address" rows="3" cols="15" required placeholder="Enter your delivery address..."></textarea><br>
+        
+        <label for="contact">CONTACT DETAILS:</label><br>
+        <textarea id="contact" name="contact" rows="3" cols="15" required placeholder="Enter your contact number..."></textarea><br>
+        
+        <h3>PAYMENT METHOD:</h3>
+        
+        <div class="payment-option">
+            <div class="payment-title">
+                <input type="radio" id="credit" name="payment" value="credit" required>
+                <label for="credit">CREDIT OR DEBIT CARD</label>
+            </div>
+            <img src="cre.jpeg" alt="Credit Card Image" style="width: 200px; margin: 10px 0;">
+            <div class="payment-details">We accept all major credit and debit cards.</div>
+        </div>
+        
+        <div class="payment-option">
+            <div class="payment-title">
+                <input type="radio" id="internet" name="payment" value="internet">
+                <label for="internet">INTERNET BANKING</label>
+            </div>
+            <select name="bank" style="font-size: 1em;">
+                <option value="select" disabled selected>Select Bank</option>
+                <option value="sbi">SBI</option>
+                <option value="hdfc">HDFC</option>
+                <option value="icici">ICICI</option>
+                <option value="union">UNION</option>
+                <option value="axis">AXIS</option>
+            </select>
+            <div class="payment-details">Quick and secure transactions via your bank's portal.</div>
+        </div>
+        
+        <div class="payment-option">
+            <div class="payment-title">
+                <input type="radio" id="cod" name="payment" value="cod">
+                <label for="cod">CASH ON DELIVERY</label>
+            </div>
+            <div class="payment-details">Pay with cash when your order arrives.</div>
+        </div>
+        
+        <input type="submit" value="PLACE ORDER">
+    </form>
+    <a href="air.html">Back</a>
+</body>
+</html>

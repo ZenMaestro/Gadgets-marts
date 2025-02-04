@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+
+        :root {
+            --color-bg1: rgb(8, 10, 15);
+            --color-bg2: rgb(0, 17, 32);
+            --color1: 18, 113, 255;
+            --color2: 107, 74, 255;
+            --color3: 100, 100, 255;
+            --color4: 50, 160, 220;
+            --color5: 80, 47, 122;
+            --color-interactive: 140, 100, 255;
+            --circle-size: 80%;
+            --blending: hard-light;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            color: #FFF;
+            background: transparent;
+            border: none;
+        }
+
+        html,
+        body {
+            font-family: "Dongle", sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background: #FFF;
+            font-family: "Montserrat", sans-serif;
+            overflow: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+        }
+
+        .card {
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            user-select: none;
+            max-width: 600px;
+            padding: 48px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            box-shadow: 0 4px 90px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card:before {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: white;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    white 34%, white 89%,
+                    rgba(255, 255, 255, 0) 100%);
+            opacity: 0.3;
+            filter: blur(0.5px);
+            mix-blend-mode: hard-light;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #fff;
+            text-align: center;
+        }
+
+        .inputbox {
+            position: relative;
+            margin: 30px 0;
+            width: 300px;
+            border-bottom: 2px solid#fff;
+        }
+
+        .inputbox label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 1em;
+            pointer-events: none;
+            transition: 0.5s;
+            transform-origin: top left;
+            font-weight: 700;
+        }
+
+        .inputbox input:focus~label,
+        .inputbox input:not(:placeholder-shown)~label {
+            top: 5px;
+            font-size: 0.8em;
+            color: #fff;
+        }
+
+        .inputbox input {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            padding: 0 35px 0 5px;
+            color: #fff;
+            position: relative;
+            top: 5px;
+        }
+
+        .inputbox ion-icon {
+            position: absolute;
+            right: 8px;
+            color: #fff;
+            font-size: 1.2em;
+            top: 20px;
+        }
+
+        button {
+            width: 100%;
+            height: 40px;
+            border-radius: 40px;
+            /* background-color: #e6e2e2; */
+            border: 2px solid white;
+            backdrop-filter: blur(20px);
+            color: #fff;
+            outline: none;
+            cursor: pointer;
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        button:hover {
+            box-shadow: 0 10px 10px #fff, 0 0 20px #fff;
+            border: none;
+            transition: 0.5s all;
+        }
+
+        .forget {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0 15px;
+            font-size: 0.9em;
+            color: #fff;
+        }
+
+        .forget label:nth-child(2) {
+            order: 1;
+        }
+
+        .forget label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .forget label input[type="checkbox"] {
+            margin-right: 6px
+        }
+
+        .forget label a {
+            color: #fff;
+            text-decoration: none;
+
+        }
+
+        .forget label a:hover {
+            text-decoration: underline;
+        }
+
+        .register {
+            font-size: 0.9em;
+            color: #fff;
+            text-align: center;
+            margin: 20px 0 15px;
+        }
+
+        .register p a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .register p a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+
+            50% {
+                transform: translateY(50%);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(40deg, var(--color-bg1),
+                    var(--color-bg2));
+            top: 0;
+            left: 0;
+        }
+
+        .gradient-bg .gradients-container {
+            filter: url(#goo) blur(10px);
+            width: 100%;
+            height: 100%;
+        }
+
+        .gradient-bg .g1 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+            mix-blend-mode: var(--blending);
+            width: var(--circle-size);
+            height: var(--circle-size);
+            top: calc(50% - var(--circle-size) / 2);
+            left: calc(50% - var(--circle-size) / 2);
+            transform-origin: center center;
+            animation: moveVertical 30s ease infinite;
+            opacity: 1;
+        }
+
+        .gradient-bg .g2 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+            mix-blend-mode: var(--blending);
+            width: var(--circle-size);
+            height: var(--circle-size);
+            top: calc(50% - var(--circle-size) / 2);
+            left: calc(50% - var(--circle-size) / 2);
+            transform-origin: calc(50% - 400px);
+            animation: moveInCircle 20s reverse infinite;
+            opacity: 1;
+        }
+
+        .gradient-bg .g3 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+            mix-blend-mode: var(--blending);
+            width: var(--circle-size);
+            height: var(--circle-size);
+            top: calc(50% - var(--circle-size) / 2 + 200px);
+            left: calc(50% - var(--circle-size) / 2 - 500px);
+            transform-origin: calc(50% + 400px);
+            animation: moveInCircle 40s linear infinite;
+            opacity: 1;
+        }
+
+        .gradient-bg .g4 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+            mix-blend-mode: var(--blending);
+            width: var(--circle-size);
+            height: var(--circle-size);
+            top: calc(50% - var(--circle-size) / 2);
+            left: calc(50% - var(--circle-size) / 2);
+            transform-origin: calc(50% - 200px);
+            animation: moveHorizontal 40s ease infinite;
+            opacity: 0.7;
+        }
+
+        .gradient-bg .g5 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+            mix-blend-mode: var(--blending);
+            width: calc(var(--circle-size) * 2);
+            height: calc(var(--circle-size) * 2);
+            top: calc(50% - var(--circle-size));
+            left: calc(50% - var(--circle-size));
+            transform-origin: calc(50% - 800px) calc(50% + 200px);
+            animation: moveInCircle 20s ease infinite;
+            opacity: 1;
+        }
+
+
+        /* -- External Social Link CSS Styles -- */
+
+        #source-link {
+            top: 120px;
+        }
+
+        #source-link>i {
+            color: rgb(94, 106, 210);
+        }
+
+        #yt-link {
+            top: 65px;
+        }
+
+        #yt-link>i {
+            color: rgb(219, 31, 106);
+
+        }
+
+        #Fund-link {
+            top: 10px;
+        }
+
+        #Fund-link>i {
+            color: rgb(255, 251, 0);
+
+        }
+
+        .meta-link {
+            align-items: center;
+            backdrop-filter: blur(3px);
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: inline-flex;
+            gap: 5px;
+            left: 10px;
+            padding: 10px 20px;
+            position: fixed;
+            text-decoration: none;
+            transition: background-color 600ms, border-color 600ms;
+            z-index: 10000;
+        }
+
+        .meta-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .meta-link>i,
+        .meta-link>span {
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .meta-link>span {
+            color: white;
+            font-family: "Rubik", sans-serif;
+            transition: color 600ms;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+
+
+
+
+        <form action="next3.html">
+
+            <h2>Login Here</h2>
+
+            <div class="inputbox">
+                <input type="text" name="name" id="name" required>
+                <label for="name">Name:</label>
+            </div>
+
+            <div class="inputbox">
+                <input type="email" name="email" id="email" required>
+                <label for="email">Email:</label>
+            </div>
+
+            <div class="inputbox">
+                <input type="password" name="password" id="password" required>
+                <label for="password">Password:</label>
+            </div>
+
+            <div class="forget">
+                <label for="">
+                    <input type="checkbox">Remember me
+                </label>
+                <label for="">
+                    Forget Password
+                </label>
+            </div>
+            <button>Log-in</button>
+            <div class="register">
+                <p>Don't have an account? <a href="page1.html">register</a></p>
+            </div>
+        </form>
+    </div>
+
+    <div class="gradient-bg">
+        <div class="gradients-container">
+            <div class="g1">
+            </div>
+            <div class="g2">
+            </div>
+            <div class="g3">
+            </div>
+            <div class="g4">
+            </div>
+            <div class="g5">
+            </div>
+        </div>
+    </div>
+   
+
+</body>
+
+</html>

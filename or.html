@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>Place Order</title>
+    <style>
+        body {
+            background-color: #FFCCCB;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+        h2 {
+            color: #333;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+        img {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin-top: 20px;
+        }
+        textarea {
+            font-size: 1em;
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none; /* Prevent resizing */
+        }
+        textarea::placeholder {
+            color: #aaa; /* Light gray for placeholder text */
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Slightly larger shadow on hover */
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="s.html" method="POST">
+        <h1>Place Order</h1>
+        <img src="2.png" width="308" height="308" alt="Product Image">
+        <h2>Price: 20 RS. (Including taxes)</h2>
+        <label for="address">ADDRESS:</label><br>
+        <textarea id="address" name="address" rows="3" cols="15" placeholder="Enter your address" required></textarea><br><br>
+        <label for="contact">CONTACT DETAILS:</label><br>
+        <textarea id="contact" name="contact" rows="3" cols="15" placeholder="Enter your contact number" required></textarea><br><br>
+        <input type="submit" value="PLACE ORDER">
+    </form>
+    <a href="o.html">Back</a>
+</body>
+</html>
